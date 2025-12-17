@@ -38,7 +38,7 @@ describe("storage/crypto", () => {
           tag: expect.stringMatching(base64Regex),
           key: expect.stringMatching(encryptionKeyRegex),
           type: ENCRYPTION_PARAMETERS.version,
-        })
+        }),
       );
     });
     test("should have the right keys and values when key is passed", async () => {
@@ -51,7 +51,7 @@ describe("storage/crypto", () => {
           tag: expect.stringMatching(base64Regex),
           key: expect.stringMatching(encryptionKeyRegex),
           type: ENCRYPTION_PARAMETERS.version,
-        })
+        }),
       );
       expect(encryptionResults.key).toStrictEqual(encryptionKey);
     });

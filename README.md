@@ -28,7 +28,7 @@ This section shows you how to use OpenAttestation (Encryption) to encrypt or dec
 
 The following shows a code example which will encrypt a document.
 
->**Note:** When you run it, be sure to use different values.
+> **Note:** When you run it, be sure to use different values.
 
 ```javascript
 const { encryptString } = require("@govtechsg/oa-encryption");
@@ -74,8 +74,7 @@ It will display a response that looks like:
 }
 ```
 
-You can extract the key from the encrypted document and store the rest of the document anywhere. 
-
+You can extract the key from the encrypted document and store the rest of the document anywhere.
 
 ### Decrypting a document
 
@@ -83,7 +82,7 @@ To decrypt the document, you will need to provide the key. That makes your docum
 
 The following shows a code example which will decrypt a document that was encrypted.
 
->**Note:** When you run it, be sure to use different values.
+> **Note:** When you run it, be sure to use different values.
 
 ```javascript
 const { decryptString } = require("@govtechsg/oa-encryption");
@@ -102,7 +101,7 @@ console.log(JSON.parse(decryptedDocument));
 
 You will be able to retrieve your document content.
 
->**Important:** Remember to put back the key in the object passed to the `decryptString` function, because the key was separated from the encrypted document previously.
+> **Important:** Remember to put back the key in the object passed to the `decryptString` function, because the key was separated from the encrypted document previously.
 
 ***
 
@@ -124,138 +123,88 @@ You will be able to retrieve your document content.
     *   [Parameters](#parameters-1)
 *   [decodeDocument](#decodedocument)
     *   [Parameters](#parameters-2)
+*   [IEncryptionResults](#iencryptionresults)
 *   [encryptString](#encryptstring)
     *   [Parameters](#parameters-3)
 *   [decryptString](#decryptstring)
     *   [Parameters](#parameters-4)
-*   [IEncryptionResults](#iencryptionresults)
-    *   [Properties](#properties)
 
 ### ENCRYPTION\_PARAMETERS
 
-To learn more about the default options from responses, see this [StackExchange post](https://crypto.stackexchange.com/questions/26783/ciphertext-and-tag-size-and-iv-transmission-with-aes-in-gcm-mode/26787).
+Default options from responses
+[here](https://crypto.stackexchange.com/questions/26783/ciphertext-and-tag-size-and-iv-transmission-with-aes-in-gcm-mode/26787)
 
 #### algorithm
 
-The default value of `algorithm` is `"AES-GCM"`. 
-
 #### keyLength
-
-The default value of `keyLength` is 256 bits, based on the [NIST publication](http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf).
 
 #### ivLength
 
-The default value of `ivLength` is 96 bits, based on the [NIST publication](http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf).
-
 #### tagLength
-
-The default value of `tagLength` is 128 bits, based on the [NIST publication](http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf).
 
 #### version
 
-The default value of `version` is `"OPEN-ATTESTATION-TYPE-1"`.
-
 ### generateEncryptionKey
 
-This request generates a random key represented as a hexadecimal string.
+Generates a random key represented as a hexadecimal string
 
 #### Parameters
 
-This request supports the parameter below:
-
-| Parameter Name  | Data Type  | Necessity | Description |
-|-----------------|------------|-----------|-------------|
-|`keyLengthInBits`|**[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)**| Optional  | Default `ENCRYPTION_PARAMETERS.keyLength` |
-
-#### Results
-
-Returns the generated key as a **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**.
-
+*   `keyLengthInBits` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Key length (optional, default `ENCRYPTION_PARAMETERS.keyLength`)
 
 ### encodeDocument
 
-This request performs encoding on a document.
-
 #### Parameters
 
-This request supports the parameter below:
-
-| Parameter Name  | Data Type  | Necessity | Description |
-|-----------------|------------|-----------|-------------|
-|`document`|**[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**| Required | Provide a document to encode it |
-
-#### Results
-
-Returns the encoded document as a **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**.
-
+*   `document` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
 ### decodeDocument
 
-This request performs decoding on an encoded document.
-
 #### Parameters
 
-This request supports the parameter below:
-
-| Parameter Name  | Data Type  | Necessity | Description |
-|-----------------|------------|-----------|-------------|
-|`encoded`|**[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**| Required | Provide an encoded document to decode it |
-
-#### Results
-
-Returns the decoded document as a **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**.
-
-### encryptString
-
-This request encrypts a given string with symmetric AES.
-
-#### Parameters
-
-This request supports the parameters below:
-
-| Parameter Name  | Data Type  | Necessity | Description |
-|-----------------|------------|-----------|------------|
-|`document`|**[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**| Required | Input a string to encrypt it |
-| `key`  | **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** | Optional | Input an encryption key |
-
-#### Results
-
-Returns an [IEncryptionResults](#iencryptionresults) object which contains the encrypted string.
-
-
-### decryptString
-
-This request decrypts a given ciphertext and its associated variables.
-
-#### Parameters
-
-This request supports the parameter below:
-
-| Property Name  | Data Type  | Necessity | Description |
-|-----------------|------------|-----------|------------|
-|`object`|**[IEncryptionResults](#iencryptionresults)**| Required | `IEncryptionResults` object with the corresponding values |
-
-#### Results
-
-Returns the decrypted **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**.
-
+*   `encoded` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
 ### IEncryptionResults
 
-`IEncryptionResults` is an interface. It is the result returned by `encryptString` and the input expected by `decryptString`.
+### encryptString
 
-#### Properties
+Encrypts a given string with symmetric AES
 
-This interface has the following properties:
+#### Parameters
 
-| Property Name  | Data Type  | Necessity | Description |
-|-----------------|------------|-----------|------------|
-|`cipherText`|**[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**| Required | Cipher text base64 encoded |
-| `iv` |**[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**| Required | IV base64 encoded |
-| `tag`  | **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** | Required | AES authentication tag base64 encoded |
-| `key`  | **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** | Required | Decryption key hexademical encoded |
-| `type` | **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** | Required | Encryption algorithm identifier |
+*   `document` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Input string to encrypt
+*   `key` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?**&#x20;
 
+Returns **[IEncryptionResults](#iencryptionresults)** cipherText cipher text in base64
+
+Returns **any** iv iv in base64
+
+Returns **any** tag authenticated encryption tag in base64
+
+Returns **any** key encryption key in hexadecimal
+
+Returns **any** type The encryption algorithm identifier
+
+### decryptString
+
+Decrypts a given ciphertext along with its associated variables
+
+#### Parameters
+
+*   `$0` **[IEncryptionResults](#iencryptionresults)**&#x20;
+
+    *   `$0.cipherText` &#x20;
+    *   `$0.tag` &#x20;
+    *   `$0.iv` &#x20;
+    *   `$0.key` &#x20;
+    *   `$0.type` &#x20;
+*   `cipherText` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** cipher text base64 encoded
+*   `tag` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** aes authentication tag base64 encoded
+*   `iv` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** iv base64 encoded
+*   `key` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** decryption key hexademical encoded
+*   `type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** encryption algorithm identifier
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**&#x20;
 
 ## Additional information
 
